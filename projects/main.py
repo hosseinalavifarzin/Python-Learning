@@ -1,12 +1,30 @@
 
 users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
-options = ["new_user", "delete_user", "show list", "Search","total","hello","Exit"]
-
+options = ["new_user", "delete_user", "show list", "Search","total","hello","calc","Exit"]
+calc = ["zarb", "tafrigh", "show list", "Search","total","hello","calc","Exit"]
 def show_user():
     print("\nUsers:")
     for user in users:
         print(user)
 
+
+def multiply (a,b):
+        c=a*b
+        print(f"{a} x {b}={c}")
+
+def Division (a,b):
+        c=a/b
+        print(f"{a} / {b} = {c}")
+
+def Addition (a,b):
+        c=a+b
+        print(f"{a} + {b} = {c}")
+
+def Subtraction (a,b):
+        c=a+b
+        print(f"{a} + {b} = {c}")
+
+        
 def hello(name):
     
     print(f" hello {name} ")
@@ -55,10 +73,16 @@ while True:
     elif user_choose == "6":
         name = input("Enter your name: ")
         hello(name)
-      
-    elif user_choose == "7":
+
+    elif user_choose=="7":
+        num1 = int(input("Enter first number: "))
+        num2 = int(input("Enter second number: "))
+        multiply(num1, num2)
+
+    elif user_choose == "8":
         print("Goodbye!")
         
         break
     else:
         print("Invalid option!")
+
