@@ -209,7 +209,7 @@ while True:
         print("Invalid option!")
 
         
-        """
+        
 
 users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
 options = ["new_user", "delete_user", "show list", "Search","total","hello","Exit"]
@@ -274,3 +274,32 @@ while True:
         break
     else:
         print("Invalid option!")
+
+        while True:
+    for index, calc in enumerate(calc, start=1):
+        print(index, calc)
+
+    num1 = int(input("Enter first number: "))
+    num2 = int(input("Enter second number: "))
+    user_choose=input("choose an option:")
+    if user_choose == "1":
+        multiply(num1,num2)
+
+    elif user_choose=="2":
+        Division(num1,num2)
+
+    elif user_choose=="3":
+        Addition(num1,num2)
+
+    elif user_choose=="4":
+        Subtraction(num1,num2)
+
+        break
+
+        print(name)
+        
+def hello(name):
+    
+    print(f" hello {name} ")
+
+    """

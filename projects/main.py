@@ -1,7 +1,13 @@
 
 users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
 options = ["new_user", "delete_user", "show list", "Search","total","hello","calc","Exit"]
-calc = ["zarb", "tafrigh", "show list", "Search","total","hello","calc","Exit"]
+calc = ["x", "/", "+", "-",]
+
+def hello(name):
+    
+    print(f" hello {name} ")
+
+
 def show_user():
     print("\nUsers:")
     for user in users:
@@ -21,13 +27,9 @@ def Addition (a,b):
         print(f"{a} + {b} = {c}")
 
 def Subtraction (a,b):
-        c=a+b
-        print(f"{a} + {b} = {c}")
+        c=a-b
+        print(f"{a} - {b} = {c}")
 
-        
-def hello(name):
-    
-    print(f" hello {name} ")
 
 print("===== User Manager =====")
 
@@ -37,6 +39,9 @@ for index, option in enumerate(options, start=1):
 
 
 while True:
+
+    for index, option in enumerate(options, start=1):
+     print(index, option)
     user_choose=input("choose an option:")
     if user_choose=="1":
         new_user=input("enter new user:")
@@ -75,10 +80,34 @@ while True:
         hello(name)
 
     elif user_choose=="7":
-        num1 = int(input("Enter first number: "))
-        num2 = int(input("Enter second number: "))
-        multiply(num1, num2)
+       
+       while True:
+        for index, cal in enumerate(calc, start=1):
+            print(index, cal)
 
+        calc_choose =input("choose an option:")   
+        num1 = int(input("Enter first number: "))
+        num2 = int(input("Enter second number: "))    
+
+        if calc_choose  == "1":
+            multiply(num1,num2)
+
+        elif calc_choose =="2":
+            Division(num1,num2)
+
+        elif calc_choose =="3":
+            Addition(num1,num2)
+
+        elif calc_choose =="4":
+            Subtraction(num1,num2)
+        
+        else:
+            print("Invalid choice")
+        
+        again = input("Do another calculation? (y/n): ")
+        if again=="n":
+            break
+        
     elif user_choose == "8":
         print("Goodbye!")
         
