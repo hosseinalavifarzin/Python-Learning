@@ -1,11 +1,21 @@
 
 users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
 options = ["new_user", "delete_user", "show list", "Search","total","hello","calc","Exit"]
-calc = ["x", "/", "+", "-",]
+calc = [
+    "Multiply (*)",
+    "Divide (/)",
+    "Add (+)",
+    "Subtract (-)"
+]
 
 def hello(name):
     
     print(f" hello {name} ")
+
+
+def show_menu():
+    for index, option in enumerate(options, start=1):
+        print(index, option)
 
 
 def show_user():
@@ -13,35 +23,34 @@ def show_user():
     for user in users:
         print(user)
 
-
 def multiply (a,b):
-        c=a*b
-        print(f"{a} x {b}={c}")
+    return a*b
 
-def Division (a,b):
-        c=a/b
-        print(f"{a} / {b} = {c}")
+def Division(a, b):
+    if b == 0:
+        print("Cannot divide by zero!")
+        return None
+
+    return a / b
+
 
 def Addition (a,b):
-        c=a+b
-        print(f"{a} + {b} = {c}")
+        return a+b
 
 def Subtraction (a,b):
-        c=a-b
-        print(f"{a} - {b} = {c}")
+        return a-b
+     
 
 
 print("===== User Manager =====")
 
 
-for index, option in enumerate(options, start=1):
-    print(index, option)
+
 
 
 while True:
 
-    for index, option in enumerate(options, start=1):
-     print(index, option)
+    show_menu()
     user_choose=input("choose an option:")
     if user_choose=="1":
         new_user=input("enter new user:")
@@ -86,23 +95,34 @@ while True:
             print(index, cal)
 
         calc_choose =input("choose an option:")   
-        num1 = int(input("Enter first number: "))
-        num2 = int(input("Enter second number: "))    
 
-        if calc_choose  == "1":
-            multiply(num1,num2)
+        try:
+            num1 = int(input("Enter first number: "))
+            num2 = int(input("Enter second number: "))    
 
-        elif calc_choose =="2":
-            Division(num1,num2)
+            if calc_choose  == "1":
+                result = multiply(num1, num2)
+                print(f"{num1} x {num2}={result}")
 
-        elif calc_choose =="3":
-            Addition(num1,num2)
+            elif calc_choose =="2":
+                result = Division(num1, num2)
+                print(f"{num1} / {num2} = {result}")
 
-        elif calc_choose =="4":
-            Subtraction(num1,num2)
+            elif calc_choose =="3":
+                 result = Addition(num1, num2)
+                 print(f"{num1} + {num2} = {result}")
+
+            elif calc_choose =="4":
+                result = Subtraction(num1, num2)
+                print(f"{num1} - {num2} = {result}")
         
-        else:
-            print("Invalid choice")
+            else:
+                print("Invalid choice")
+                continue
+        except:
+            print("Please enter a valid number")
+
+    
         
         again = input("Do another calculation? (y/n): ")
         if again=="n":
@@ -115,3 +135,4 @@ while True:
     else:
         print("Invalid option!")
 
+  
