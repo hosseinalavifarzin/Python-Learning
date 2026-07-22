@@ -205,3 +205,87 @@ len
 in
 
 جستجو
+
+
+# List Methods
+
+---
+
+append()
+
+اضافه کردن آیتم
+
+```python
+users.append("ali")
+```
+
+---
+
+remove()
+
+حذف آیتم
+
+```python
+users.remove("ali")
+```
+
+---
+
+pop()
+
+حذف با اندیس
+
+```python
+users.pop(0)
+```
+
+---
+
+insert()
+
+اضافه کردن در محل مشخص
+
+```python
+users.insert(1, "ali")
+```
+
+---
+
+sort()
+
+مرتب کردن
+
+```python
+numbers.sort()
+```
+
+---
+
+reverse()
+
+برعکس کردن لیست
+
+```python
+users.reverse()
+```
+
+---
+
+len()
+
+تعداد اعضا
+
+```python
+len(users)
+```
+
+---
+
+in
+
+بررسی وجود داشتن
+
+```python
+if "ali" in users:
+    print("Found")
+```
