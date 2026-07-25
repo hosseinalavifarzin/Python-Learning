@@ -74,6 +74,41 @@ for user in users:
 
 
 
+    def add_user():
+    while True:
+            option()
+            choose_option=input("choose an option:")
+            if choose_option=="1":
+                new_user = input("Enter new user: ").strip().lower()
+                if new_user in users:
+                    print(f"{new_user} already exists.")
+                else:
+                    users.append(new_user)
+                    print(f"{new_user} added successfully")
+                    show_user()
+            elif choose_option=="2":
+                 new_user = input("Enter new users: ").lower().split(",")
+                 for user in new_user:
+                    users.append(user)
+                 print(f"{new_user} added successfully")
+                 show_user()
+            elif choose_option=="3":
+                break
+
+
+
+                
+def delete_user():
+    delete_user=input("Enter user: ").lower().split(",")
+    if delete_user in users:
+        users.remove(delete_user)
+        print(f"{delete_user} deleted successfully.")
+        show_user()
+    else:
+            print(f"{delete_user} doesnt exists")
+
+
+
     name=input("Enter new user: ")
 age=int(input("Enter age: "))
 job=input("Enter job: ")

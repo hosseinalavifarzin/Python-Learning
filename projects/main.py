@@ -1,5 +1,23 @@
 
-users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
+#users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
+users=[
+    {"name":"hanie",
+     "password":24,
+     "job":"designer"
+
+},
+    {"name":"hossein",
+     "password":26,
+     "job":"designer"
+
+},
+    {"name":"ali",
+     "password":20,
+     "job":"mentor"
+
+}
+
+]  
 add_options=["single add","muli add"]
 options = ["new_user", "delete_user", "show list", "Search","total","hello","calc","Exit"]
 calc = [
@@ -20,6 +38,31 @@ def option():
 def show_menu():
     for index, option in enumerate(options, start=1):
         print(index, option)
+
+def sign_in():
+    name = input("Enter name: ").strip().lower()
+    password = input("Enter password: ")
+    confirm_password = input("Confirm password: ")
+
+    if password != confirm_password:
+        print("Passwords do not match.")
+        return
+
+    for user in users:
+        if user["name"] == name:
+            print("User already exists.")
+            return
+
+    new_user = {
+        "name": name,
+        "password": password,
+        "job": "designer"
+    }
+
+    users.append(new_user)
+
+    print("User registered successfully.")
+            
 
 
 def total_user():
@@ -70,41 +113,51 @@ def add_user():
             option()
             choose_option=input("choose an option:")
             if choose_option=="1":
-                new_user = input("Enter new user: ").strip().lower()
-                if new_user in users:
-                    print(f"{new_user} already exists.")
-                else:
-                    users.append(new_user)
-                    print(f"{new_user} added successfully")
-                    show_user()
-            elif choose_option=="2":
-                 new_user = input("Enter new users: ").lower().split(",")
-                 for user in new_user:
-                    users.append(user)
-                 print(f"{new_user} added successfully")
-                 show_user()
-            elif choose_option=="3":
-                break
+                name = input("Enter name: ").strip().lower()
+                age = int(input("Enter age: "))
+                job = input("Enter job: ").strip().lower()
+
+            new_user = {
+    "name": name,
+    "age": age,
+    "job": job
+}
+
+            users.append(new_user)
 
 def delete_user():
-    delete_user=input("Enter user: ").lower().split(",")
-    if delete_user in users:
-        users.remove(delete_user)
-        print(f"{delete_user} deleted successfully.")
-        show_user()
-    else:
-            print(f"{delete_user} doesnt exists")
+    name = input("Enter user: ").strip().lower()
+
+    for user in users:
+        if user["name"] == name:
+            users.remove(user)
+            print("Deleted successfully.")
+            return
+
+    print("User not found.")
 
 def search_user():
-    SEARCH_USER=input("Enter user: ").strip().lower()
-    if SEARCH_USER in users:
-        print(f"{SEARCH_USER} ✅ User found")
-    else:
-        print("❌ User not found")
+    search = input("Enter user: ").strip().lower()
 
+    found = False
+
+    for user in users:
+        if user["name"] == search:
+            print(user)
+            found = True
+            break
+
+    if not found:
+        print("User not found.")
 def show_user():
     print("\nUsers:")
-    print(", ".join(users))
+
+    for user in users:
+        print(
+            f'Name: {user["name"]}, '
+            f'Age: {user["age"]}, '
+            f'Job: {user["job"]}'
+        )
 
 
 def multiply (a,b):
@@ -136,8 +189,8 @@ while True:
 
     show_menu()
     user_choose=input("choose an option:")
-    if user_choose=="1":#add_user
-        add_user()
+    if user_choose=="1":
+        sign_in()
     elif user_choose=="2":#delete_user
         delete_user()
 
