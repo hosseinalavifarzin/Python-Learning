@@ -27,13 +27,10 @@ calc = [
     "Subtract (-)"
 ]
 
-def hello(name):
-    name =input("Enter user: ").strip().lower()
-    print(f" hello {name} ")
 
-def option():
-    for index,add_option in enumerate(add_options,start=1):
-        print(index,add_option)
+# ==========================
+# Menu
+# ==========================
 
 def show_menu():
     for index, option in enumerate(options, start=1):
@@ -84,15 +81,15 @@ def cal():
                 print(f"{num1} x {num2}={result}")
 
             elif calc_choose =="2":
-                result = Division(num1, num2)
+                result = divide(num1, num2)
                 print(f"{num1} / {num2} = {result}")
 
             elif calc_choose =="3":
-                 result = Addition(num1, num2)
+                 result = add(num1, num2)
                  print(f"{num1} + {num2} = {result}")
 
             elif calc_choose =="4":
-                result = Subtraction(num1, num2)
+                result = subtract(num1, num2)
                 print(f"{num1} - {num2} = {result}")
         
             else:
@@ -109,21 +106,25 @@ def cal():
 
 
 def add_user():
+
     while True:
-            option()
+            options()
             choose_option=input("choose an option:")
             if choose_option=="1":
                 name = input("Enter name: ").strip().lower()
                 age = int(input("Enter age: "))
                 job = input("Enter job: ").strip().lower()
 
-            new_user = {
-    "name": name,
-    "age": age,
-    "job": job
-}
+                new_user = {
+                "name": name,
+                "age": age,
+                "job": job
+                }
 
-            users.append(new_user)
+                users.append(new_user)
+            else:
+                print("Invalid option")
+
 
 def delete_user():
     name = input("Enter user: ").strip().lower()
@@ -163,7 +164,7 @@ def show_user():
 def multiply (a,b):
     return a*b
 
-def Division(a, b):
+def divide(a, b):
     if b == 0:
         print("Cannot divide by zero!")
         return None
@@ -171,19 +172,62 @@ def Division(a, b):
     return a / b
 
 
-def Addition (a,b):
-        return a+b
-
-def Subtraction (a,b):
-        return a-b
-     
+def add(a, b):
+    return a + b
 
 
-print("===== User Manager =====")
+def subtract(a, b):
+    return a - b
 
 
+def calculator():
+
+    while True:
+
+        for index, operation in enumerate(calc, start=1):
+            print(index, operation)
+
+        choice = input("Choose operation: ")
+
+        try:
+
+            num1 = float(input("First number: "))
+            num2 = float(input("Second number: "))
+
+        except ValueError:
+            print("Please enter a valid number.")
+            continue
+
+        if choice == "1":
+            print("Result:", multiply(num1, num2))
+
+        elif choice == "2":
+            result = divide(num1, num2)
+
+            if result is not None:
+                print("Result:", result)
+
+        elif choice == "3":
+            print("Result:", add(num1, num2))
+
+        elif choice == "4":
+            print("Result:", subtract(num1, num2))
+
+        else:
+            print("Invalid operation")
+            continue
+
+        again = input("Another calculation? (y/n): ").lower()
+
+        if again != "y":
+            break
 
 
+# ==========================
+# Main Program
+# ==========================
+
+print("===== USER MANAGER =====")
 
 while True:
 
@@ -194,26 +238,25 @@ while True:
     elif user_choose=="2":#delete_user
         delete_user()
 
-    elif user_choose=="3":#show_user
-        show_user()
+    elif choice == "3":
+        show_users()
 
-    elif user_choose=="4":#search_user
+    elif choice == "4":
         search_user()
 
-    elif user_choose == "5":#total_user
-        total_user()
+    elif choice == "5":
+        total_users()
 
-    elif user_choose == "6":#hello
-        hello()
+    elif choice == "6":
+        name = input("Enter your name: ").strip().title()
+        hello(name)
 
-    elif user_choose=="7":#calc
-       cal()
-       
-    elif user_choose == "8":#Goodbye
+    elif choice == "7":
+        calculator()
+
+    elif choice == "8":
         print("Goodbye!")
-        
         break
-    else:
-        print("Invalid option!")
 
-  
+    else:
+        print("Invalid option")
