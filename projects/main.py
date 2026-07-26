@@ -31,6 +31,24 @@ calc = [
 # ==========================
 # Menu
 # ==========================
+def load_users():
+    users.clear()
+
+    with open("users.txt", "r") as file:
+        for line in file:
+            line = line.strip()
+
+            if line == "":
+                continue
+
+            name, password, job = line.split(",")
+
+            users.append({
+                "name": name,
+                "password": password,
+                "job": job
+            })
+
 
 def show_menu():
     for index, option in enumerate(options, start=1):
@@ -57,7 +75,8 @@ def sign_in():
     }
 
     users.append(new_user)
-
+    with open("users.txt", "a") as file:
+        file.write(f"{name},{password},designer\n")
     print("User registered successfully.")
             
 
@@ -226,7 +245,7 @@ def calculator():
 # ==========================
 # Main Program
 # ==========================
-
+load_users()
 print("===== USER MANAGER =====")
 
 while True:
