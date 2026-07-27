@@ -1,0 +1,22 @@
+[
+    {
+        "name": "hanie",
+        "password": "24",
+        "job": "designer"
+    },
+    {
+        "name": "hossein",
+        "password": "26",
+        "job": "designer"
+    },
+    {
+        "name": "asali",
+        "password": "123",
+        "job": "ui"
+    },
+    {
+        "name": "jigari",
+        "password": "1234",
+        "job": "ui"
+    }
+]

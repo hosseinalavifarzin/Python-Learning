@@ -1,25 +1,22 @@
+import json
 
-#users= ["ali", "hamed" ,"fateme", "sara" ,"reza","nilo","hanie"]
-users=[
-    {"name":"hanie",
-     "password":24,
-     "job":"designer"
+# ==========================
+# Data
+# ==========================
 
-},
-    {"name":"hossein",
-     "password":26,
-     "job":"designer"
+users = []
 
-},
-    {"name":"ali",
-     "password":20,
-     "job":"mentor"
+options = [
+    "Sign Up",
+    "Delete User",
+    "Show Users",
+    "Search User",
+    "Total Users",
+    "Hello",
+    "Calculator",
+    "Exit"
+]
 
-}
-
-]  
-add_options=["single add","muli add"]
-options = ["new_user", "delete_user", "show list", "Search","total","hello","calc","Exit"]
 calc = [
     "Multiply (*)",
     "Divide (/)",
@@ -29,37 +26,47 @@ calc = [
 
 
 # ==========================
+# Storage
+# ==========================
+
+def load_users():
+    global users
+
+    try:
+        with open("users.json", "r") as file:
+            users = json.load(file)
+
+    except FileNotFoundError:
+        users = []
+
+
+def save_users():
+    with open("users.json", "w") as file:
+        json.dump(users, file, indent=4)
+
+
+# ==========================
 # Menu
 # ==========================
-def load_users():
-    users.clear()
-
-    with open("users.txt", "r") as file:
-        for line in file:
-            line = line.strip()
-
-            if line == "":
-                continue
-
-            name, password, job = line.split(",")
-
-            users.append({
-                "name": name,
-                "password": password,
-                "job": job
-            })
-
 
 def show_menu():
+    print("\n===== USER MANAGER =====")
+
     for index, option in enumerate(options, start=1):
-        print(index, option)
+        print(f"{index}. {option}")
 
-def sign_in():
-    name = input("Enter name: ").strip().lower()
-    password = input("Enter password: ")
-    confirm_password = input("Confirm password: ")
 
-    if password != confirm_password:
+# ==========================
+# User Functions
+# ==========================
+
+def sign_up():
+
+    name = input("Name: ").strip().lower()
+    password = input("Password: ").strip()
+    confirm = input("Confirm Password: ").strip()
+
+    if password != confirm:
         print("Passwords do not match.")
         return
 
@@ -68,124 +75,96 @@ def sign_in():
             print("User already exists.")
             return
 
+    job = input("Job: ").strip().lower()
+
     new_user = {
         "name": name,
         "password": password,
-        "job": "designer"
+        "job": job
     }
 
     users.append(new_user)
-    with open("users.txt", "a") as file:
-        file.write(f"{name},{password},designer\n")
-    print("User registered successfully.")
-            
 
+    save_users()
 
-def total_user():
-    print(f"Total users:{len(users)}")
-
-def cal():
-   while True:
-        for index, cal in enumerate(calc, start=1):
-            print(index, cal)
-
-        calc_choose =input("choose an option:")   
-
-        try:
-            num1 = int(input("Enter first number: "))
-            num2 = int(input("Enter second number: "))    
-
-            if calc_choose  == "1":
-                result = multiply(num1, num2)
-                print(f"{num1} x {num2}={result}")
-
-            elif calc_choose =="2":
-                result = divide(num1, num2)
-                print(f"{num1} / {num2} = {result}")
-
-            elif calc_choose =="3":
-                 result = add(num1, num2)
-                 print(f"{num1} + {num2} = {result}")
-
-            elif calc_choose =="4":
-                result = subtract(num1, num2)
-                print(f"{num1} - {num2} = {result}")
-        
-            else:
-                print("Invalid choice")
-                continue
-        except:
-            print("Please enter a valid number")
-
-    
-        
-        again = input("Do another calculation? (y/n): ")
-        if again=="n":
-            break
-
-
-def add_user():
-
-    while True:
-            options()
-            choose_option=input("choose an option:")
-            if choose_option=="1":
-                name = input("Enter name: ").strip().lower()
-                age = int(input("Enter age: "))
-                job = input("Enter job: ").strip().lower()
-
-                new_user = {
-                "name": name,
-                "age": age,
-                "job": job
-                }
-
-                users.append(new_user)
-            else:
-                print("Invalid option")
+    print("User added successfully.")
 
 
 def delete_user():
-    name = input("Enter user: ").strip().lower()
+
+    name = input("Enter username: ").strip().lower()
 
     for user in users:
+
         if user["name"] == name:
             users.remove(user)
-            print("Deleted successfully.")
+
+            save_users()
+
+            print("User deleted successfully.")
             return
 
     print("User not found.")
 
+
+def show_users():
+
+    if len(users) == 0:
+        print("No users.")
+        return
+
+    print()
+
+    for user in users:
+
+        print(f"Name     : {user['name']}")
+        print(f"Password : {user['password']}")
+        print(f"Job      : {user['job']}")
+        print("-" * 30)
+
+
 def search_user():
-    search = input("Enter user: ").strip().lower()
 
-    found = False
-
-    for user in users:
-        if user["name"] == search:
-            print(user)
-            found = True
-            break
-
-    if not found:
-        print("User not found.")
-def show_user():
-    print("\nUsers:")
+    name = input("Enter username: ").strip().lower()
 
     for user in users:
-        print(
-            f'Name: {user["name"]}, '
-            f'Age: {user["age"]}, '
-            f'Job: {user["job"]}'
-        )
+
+        if user["name"] == name:
+
+            print("\nUser Found\n")
+
+            print(f"Name     : {user['name']}")
+            print(f"Password : {user['password']}")
+            print(f"Job      : {user['job']}")
+
+            return
+
+    print("User not found.")
 
 
-def multiply (a,b):
-    return a*b
+def total_users():
+
+    print(f"Total Users : {len(users)}")
+
+
+def hello():
+
+    name = input("Enter your name: ").title()
+
+    print(f"Hello {name}")
+
+
+# ==========================
+# Calculator
+# ==========================
+
+def multiply(a, b):
+    return a * b
+
 
 def divide(a, b):
+
     if b == 0:
-        print("Cannot divide by zero!")
         return None
 
     return a / b
@@ -203,6 +182,8 @@ def calculator():
 
     while True:
 
+        print()
+
         for index, operation in enumerate(calc, start=1):
             print(index, operation)
 
@@ -210,30 +191,38 @@ def calculator():
 
         try:
 
-            num1 = float(input("First number: "))
-            num2 = float(input("Second number: "))
+            num1 = float(input("First Number: "))
+            num2 = float(input("Second Number: "))
 
         except ValueError:
+
             print("Please enter a valid number.")
             continue
 
         if choice == "1":
+
             print("Result:", multiply(num1, num2))
 
         elif choice == "2":
+
             result = divide(num1, num2)
 
-            if result is not None:
+            if result is None:
+                print("Cannot divide by zero.")
+            else:
                 print("Result:", result)
 
         elif choice == "3":
+
             print("Result:", add(num1, num2))
 
         elif choice == "4":
+
             print("Result:", subtract(num1, num2))
 
         else:
-            print("Invalid operation")
+
+            print("Invalid operation.")
             continue
 
         again = input("Another calculation? (y/n): ").lower()
@@ -243,39 +232,50 @@ def calculator():
 
 
 # ==========================
-# Main Program
+# Main
 # ==========================
+
 load_users()
-print("===== USER MANAGER =====")
 
 while True:
 
     show_menu()
-    user_choose=input("choose an option:")
-    if user_choose=="1":
-        sign_in()
-    elif user_choose=="2":#delete_user
+
+    choice = input("\nChoose option: ")
+
+    if choice == "1":
+
+        sign_up()
+
+    elif choice == "2":
+
         delete_user()
 
     elif choice == "3":
+
         show_users()
 
     elif choice == "4":
+
         search_user()
 
     elif choice == "5":
+
         total_users()
 
     elif choice == "6":
-        name = input("Enter your name: ").strip().title()
-        hello(name)
+
+        hello()
 
     elif choice == "7":
+
         calculator()
 
     elif choice == "8":
-        print("Goodbye!")
+
+        print("Goodbye.")
         break
 
     else:
-        print("Invalid option")
+
+        print("Invalid option.")
