@@ -1,5 +1,27 @@
-import json
+from menus.main_menu import show_main_menu
 
+def main():
+
+    while True:
+
+        print("===== USER MANAGER =====")
+
+        show_main_menu()
+
+        choice =int( input("Choose option: ")) - 1
+        
+        if choice=="1":
+            print("This feature is not implemented yet.")
+
+        elif choice=="2":
+            print("This feature is not implemented yet.")
+        
+        elif choice == "3":
+            print("Goodbye!")
+            break
+
+
+'''
 # ==========================
 # Data
 # ==========================
@@ -279,3 +301,4 @@ while True:
     else:
 
         print("Invalid option.")
+'''
