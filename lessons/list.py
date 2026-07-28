@@ -96,6 +96,97 @@ for user in users:
                 break
 
 
+                
+calc = [
+    "Multiply (*)",
+    "Divide (/)",
+    "Add (+)",
+    "Subtract (-)"
+]
+
+
+# ==========================
+# Menu
+# ==========================
+def load_users():
+    users.clear()
+
+    with open("users.txt", "r") as file:
+        for line in file:
+            line = line.strip()
+
+            if line == "":
+                continue
+
+            name, password, job = line.split(",")
+
+            users.append({
+                "name": name,
+                "password": password,
+                "job": job
+            })
+
+            
+            def add_user():
+
+    while True:
+            options()
+            choose_option=input("choose an option:")
+            if choose_option=="1":
+                name = input("Enter name: ").strip().lower()
+                age = int(input("Enter age: "))
+                job = input("Enter job: ").strip().lower()
+
+                new_user = {
+                "name": name,
+                "age": age,
+                "job": job
+                }
+
+                users.append(new_user)
+            else:
+                print("Invalid option")
+
+
+            def cal():
+   while True:
+        for index, cal in enumerate(calc, start=1):
+            print(index, cal)
+
+        calc_choose =input("choose an option:")   
+
+        try:
+            num1 = int(input("Enter first number: "))
+            num2 = int(input("Enter second number: "))    
+
+            if calc_choose  == "1":
+                result = multiply(num1, num2)
+                print(f"{num1} x {num2}={result}")
+
+            elif calc_choose =="2":
+                result = divide(num1, num2)
+                print(f"{num1} / {num2} = {result}")
+
+            elif calc_choose =="3":
+                 result = add(num1, num2)
+                 print(f"{num1} + {num2} = {result}")
+
+            elif calc_choose =="4":
+                result = subtract(num1, num2)
+                print(f"{num1} - {num2} = {result}")
+        
+            else:
+                print("Invalid choice")
+                continue
+        except:
+            print("Please enter a valid number")
+
+    
+        
+        again = input("Do another calculation? (y/n): ")
+        if again=="n":
+            break
+
 
                 
 def delete_user():
