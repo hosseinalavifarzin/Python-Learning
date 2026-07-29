@@ -1,24 +1,55 @@
 from menus.main_menu import show_main_menu
+from services.auth_service import register
+def main():
+    try:
+        while True:
+
+            print("===== USER MANAGER =====")
+
+            show_main_menu()
+
+            choice =int( input("Choose option: ")) - 1
+        
+            if choice=="1":
+                register()
+                
+
+            elif choice=="2":
+                print("This feature is not implemented yet.")
+        
+            elif choice == "3":
+                print("Goodbye!")
+            break
+    except:
+        print("Please enter a valid number.")
+        
+
+
+
 
 def main():
 
+    print("===== USER MANAGER =====")
+
     while True:
-
-        print("===== USER MANAGER =====")
-
+        from menus.main_menu import main_menu_items
         show_main_menu()
 
-        choice =int( input("Choose option: ")) - 1
-        
-        if choice=="1":
-            print("This feature is not implemented yet.")
+        try:
+            choice = int(input("\nChoose option: ")) - 1
 
-        elif choice=="2":
-            print("This feature is not implemented yet.")
-        
-        elif choice == "3":
-            print("Goodbye!")
-            break
+            if choice < 0 or choice >= len(main_menu_items):
+                print("Invalid option.\n")
+                continue
+
+            main_menu_items[choice]["action"]()
+
+        except ValueError:
+            print("Please enter a valid number.\n")
+
+
+if __name__ == "__main__":
+    main()
 
 
 '''

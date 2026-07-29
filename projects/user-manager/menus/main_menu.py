@@ -1,4 +1,11 @@
-menu_items = [
+from services.auth_service import login, register
+
+
+def exit_program():
+    print("Goodbye!")
+    exit()
+
+main_menu_items  = [
     {
         "title": "Login",
         "action": login
@@ -15,5 +22,7 @@ menu_items = [
 
 def show_main_menu():
 
-  for index, item in enumerate(menu_items, start=1):
+  for index, item in enumerate(main_menu_items , start=1):
     print(f"{index}. {item['title']}")
+
+
