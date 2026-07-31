@@ -1,5 +1,36 @@
-from menus.main_menu import show_main_menu
-from services.auth_service import register
+from menus.main_menu import (
+    show_main_menu,
+    get_main_menu_choice,
+    main_menu_items,
+)
+
+from panels.user_panel import user_panel
+
+
+def main():
+
+    print("===== USER MANAGER =====")
+
+    while True:
+
+        show_main_menu()
+
+        choice = get_main_menu_choice()
+
+        result = main_menu_items[choice]["action"]()
+
+        if main_menu_items[choice]["returns_user"] and result is not None:
+            user_panel(result)
+
+
+if __name__ == "__main__":
+    main()
+
+'''
+# ==========================
+# Data
+# ==========================
+
 def main():
     try:
         while True:
@@ -22,40 +53,7 @@ def main():
             break
     except:
         print("Please enter a valid number.")
-        
 
-
-
-
-def main():
-
-    print("===== USER MANAGER =====")
-
-    while True:
-        from menus.main_menu import main_menu_items
-        show_main_menu()
-
-        try:
-            choice = int(input("\nChoose option: ")) - 1
-
-            if choice < 0 or choice >= len(main_menu_items):
-                print("Invalid option.\n")
-                continue
-
-            main_menu_items[choice]["action"]()
-
-        except ValueError:
-            print("Please enter a valid number.\n")
-
-
-if __name__ == "__main__":
-    main()
-
-
-'''
-# ==========================
-# Data
-# ==========================
 
 users = []
 

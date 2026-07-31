@@ -2,21 +2,36 @@
     {
         "name": "hanie",
         "password": "24",
-        "job": "designer"
+        "role": "designer"
     },
     {
         "name": "hossein",
         "password": "26",
-        "job": "designer"
+        "role": "designer"
     },
     {
         "name": "asali",
         "password": "123",
-        "job": "ui"
+        "role": "ui"
     },
     {
         "name": "jigari",
         "password": "1234",
-        "job": "ui"
+        "role": "ui"
+    },
+    {
+        "name": "jooje",
+        "password": "123",
+        "role": "ui"
+    },
+    {
+        "name": "2",
+        "password": "2",
+        "role": "2"
+    },
+    {
+        "name": "kk",
+        "password": "123",
+        "role": "22"
     }
 ]
