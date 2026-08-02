@@ -1,7 +1,7 @@
 from data.user_repository import load_users ,save_users
 
 
-def show_users():
+def show_users(current_user):
 
     print("\n===== USERS =====")
 
@@ -16,7 +16,7 @@ def show_users():
 
     print()
 
-def search_user():
+def search_user(current_user):
 
     users = load_users()
 
