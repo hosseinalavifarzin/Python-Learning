@@ -1,37 +1,42 @@
 [
     {
         "name": "hanie",
-        "password": "24",
-        "role": "designer"
+        "password": "1381",
+        "role": "admin"
     },
     {
         "name": "hossein",
         "password": "26",
-        "role": "designer"
+        "role": "admin"
     },
     {
         "name": "asali",
         "password": "123",
-        "role": "ui"
+        "role": "user"
     },
     {
         "name": "jigari",
         "password": "1234",
-        "role": "ui"
+        "role": "user"
     },
     {
         "name": "jooje",
         "password": "123",
-        "role": "ui"
+        "role": "user"
     },
     {
         "name": "2",
         "password": "2",
-        "role": "2"
+        "role": "user"
     },
     {
         "name": "kk",
         "password": "123",
-        "role": "22"
+        "role": "user"
+    },
+    {
+        "name": "dani",
+        "password": "dandon",
+        "role": "cat"
     }
 ]

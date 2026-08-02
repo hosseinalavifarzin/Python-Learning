@@ -1,11 +1,10 @@
-from services.user_service import show_profile, change_password, logout
-
-
+from services.user_service import  change_password, logout
+from panels.profile_panel import profile_panel
 user_menu_items = [
-    {
-        "title": "Profile",
-        "action": show_profile
-    },
+   {
+    "title": "Profile",
+    "action": profile_panel
+},
     {
         "title": "Change Password",
         "action": change_password
